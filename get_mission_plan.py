@@ -16,9 +16,9 @@ class MinimalClientAsync(Node):
 
     def send_request(self):
         m = swarm_interfaces.msg.Mission()
-        d1 = swarm_interfaces.msg.Drone(drone_mission_duration=100)
-        d2 = swarm_interfaces.msg.Drone(drone_mission_duration=100)
-        d3 = swarm_interfaces.msg.Drone(drone_mission_duration=100)
+        d1 = swarm_interfaces.msg.Drone(drone_mission_duration=100, number_of_drone=1)
+        d2 = swarm_interfaces.msg.Drone(drone_mission_duration=100, number_of_drone=2)
+        d3 = swarm_interfaces.msg.Drone(drone_mission_duration=100, number_of_drone=3)
         m.drones = [d1, d2, d3]
         m.initial_location.altitude = 0.0
         m.initial_location.latitude = 0.0
