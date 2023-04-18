@@ -9,10 +9,10 @@ class MinimalClientAsync(Node):
 
     def __init__(self):
         super().__init__('minimal_client_async')
-        self.cli = self.create_client(swarm_interfaces.srv.MissionPlanning, 'mission_planning')
+        self.cli = self.create_client(swarm_interfaces.srv.MissionPlanningV2, 'mission_planning')
         while not self.cli.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service not available, waiting again...')
-        self.req = swarm_interfaces.srv.MissionPlanning.Request()
+        self.req = swarm_interfaces.srv.MissionPlanningV2.Request()
 
     def send_request(self):
         m = swarm_interfaces.msg.Mission()
