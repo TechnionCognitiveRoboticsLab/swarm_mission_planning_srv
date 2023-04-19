@@ -1,0 +1,6 @@
+# temp and hidden files
+.*
+*~
+
+# compiled bytecode
+*.pyc

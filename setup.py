@@ -21,7 +21,7 @@ setup(
     entry_points={
     'console_scripts': [
         'service = mission_planner_srv.lawnmower:main',
-        'client = get_mission_plan:main',
+        'client = mission_planner_srv.get_mission_plan:main',
     ],
 },
 )
