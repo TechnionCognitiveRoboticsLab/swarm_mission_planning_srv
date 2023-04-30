@@ -21,4 +21,4 @@ Tested on amd64: foxy, galactic, and humble.
 
 ## Dependencies
 
-* swarm_interfaces
+* [swarm_interfaces](https://github.com/halehaka/interfaces_swarm)
