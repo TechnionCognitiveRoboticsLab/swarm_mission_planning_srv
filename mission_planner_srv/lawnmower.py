@@ -60,7 +60,7 @@ class LawnmowerPlanningService(Node):
         #response.planned_mission.zones = [Zone(geo_points=plan)]
         response.planned_mission.route = plan
 
-        self.plan_publisher._publish(response.planned_mission)
+        self.plan_publisher.publish(response.planned_mission)
         return response
 
 
