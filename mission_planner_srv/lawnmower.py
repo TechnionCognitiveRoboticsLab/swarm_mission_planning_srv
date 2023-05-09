@@ -17,7 +17,7 @@ class LawnmowerPlanningService(Node):
 
     def mission_planning_callback(self, request, response):
         mission = request.mission
-        altitude = mission.initial_location.altitude
+        altitude = mission.initial_location.altitude + 1
         min_x = mission.zones[0].geo_points[0].latitude
         min_y = mission.zones[0].geo_points[0].longitude
         max_x = mission.zones[0].geo_points[3].latitude

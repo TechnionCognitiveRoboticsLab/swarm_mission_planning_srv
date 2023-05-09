@@ -26,7 +26,7 @@ class MinimalClientAsync(Node):
         z = swarm_interfaces.msg.Zone ()    
         z.alt_max = 2
         z.alt_min = 1
-        x = 2.0
+        x = 4.0
         y = 3.0
         p1 = swarm_interfaces.msg.GeoPoint()
         p2 = swarm_interfaces.msg.GeoPoint()
