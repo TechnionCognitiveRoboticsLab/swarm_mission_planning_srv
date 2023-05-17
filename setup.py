@@ -22,6 +22,8 @@ setup(
     'console_scripts': [
         'service = mission_planner_srv.lawnmower:main',
         'client = mission_planner_srv.get_mission_plan:main',
+        'client_polygons = mission_planner_srv.get_mission_plan_polygons:main',
+        'service_polygons = mission_planner_srv.server_polygons:main',
     ],
 },
 )
