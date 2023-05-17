@@ -19,9 +19,10 @@ class MissionPlanningService(Node):
 
 
     def create_grid(self, delta=0.5, minx = 0, maxx = 10, miny = 0, maxy = 10):
-        nx = int((maxx - minx)/delta)
-        ny = int((maxy - miny)/delta)
+        nx = int((maxx - minx)/delta)+1 
+        ny = int((maxy - miny)/delta)+1 
         gx, gy = np.linspace(minx,maxx,nx), np.linspace(miny,maxy,ny)
+        print(nx, ny, gx, gy)
         grid = []
         for i in range(len(gx)-1):
             for j in range(len(gy)-1):
