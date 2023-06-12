@@ -42,9 +42,9 @@ class MinimalClientAsync(Node):
         p3.latitude = 2.0    
         p3.longitude = 2.0        
         zone1.geo_points = [p1, p2, p3]
-        zone1.zone_type.value = swarm_interfaces.msg.ZoneTypeEnum.TARGET_DATA_ZONE
-        zone1.target_data.target_priority = [1, 5]
-        zone1.target_data.target_detection_probability = [0.8, 0.6]
+        zone1.zone_type.value = swarm_interfaces.msg.ZoneTypeEnum.FLIGHT_FORBIDDEN_ZONE
+        #zone1.target_data.target_priority = [1, 5]
+        #zone1.target_data.target_detection_probability = [0.8, 0.6]
         
         zone2 = swarm_interfaces.msg.Zone()
         p4 = swarm_interfaces.msg.GeoPoint()
