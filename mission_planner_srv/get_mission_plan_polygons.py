@@ -23,12 +23,10 @@ class MinimalClientAsync(Node):
         m.initial_location.altitude = 0.0
         m.initial_location.latitude = 0.0
         m.initial_location.longitude = 0.0
-        z = swarm_interfaces.msg.Zone ()    
+        z = swarm_interfaces.msg.Zone ()
         z.alt_max = 2
         z.alt_min = 1
         
-        # We assume we have the same number of zones as MissionTargetData, and zone[i] describes where mission_target_data[i] takes place
-        # We also assume all zones are polygons
 
         zone1 = swarm_interfaces.msg.Zone()
         p1 = swarm_interfaces.msg.GeoPoint()
@@ -44,6 +42,9 @@ class MinimalClientAsync(Node):
         p3.latitude = 2.0    
         p3.longitude = 2.0        
         zone1.geo_points = [p1, p2, p3]
+        zone1.zone_type.value = swarm_interfaces.msg.ZoneTypeEnum.TARGET_DATA_ZONE
+        zone1.target_data.target_priority = [1, 5]
+        zone1.target_data.target_detection_probability = [0.8, 0.6]
         
         zone2 = swarm_interfaces.msg.Zone()
         p4 = swarm_interfaces.msg.GeoPoint()
@@ -63,6 +64,9 @@ class MinimalClientAsync(Node):
         p7.latitude = 5.0    
         p7.longitude = 5.0        
         zone2.geo_points = [p4, p5, p6, p7]
+        zone2.zone_type.value = swarm_interfaces.msg.ZoneTypeEnum.TARGET_DATA_ZONE
+        zone1.target_data.target_priority = [5, 10]
+        zone1.target_data.target_detection_probability = [0.4, 0.2]
 
         m.zones = [zone1, zone2]
 

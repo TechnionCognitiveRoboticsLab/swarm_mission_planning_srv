@@ -2,14 +2,20 @@ from swarm_interfaces.srv import MissionPlanningV2
 from swarm_interfaces.msg import Mission, PlannedMissionV2, GeoPoint, Zone
 import shapely
 import numpy as np
-
+from typing import List
 import rclpy
 from rclpy.node import Node
 
 
 publish_plan_topic = "mission_plan"
 
- 
+class GridCellData:
+    def __init__(self, target_priority : List[int] = [], target_detection_probability : List[float] = [], blocked : bool = False):
+        self.target_priority = target_priority
+        self.target_detection_probability = target_detection_probability
+        self.blocked = blocked
+
+
 class MissionPlanningService(Node):
 
     def __init__(self):
@@ -50,7 +56,7 @@ class MissionPlanningService(Node):
         response.planned_mission = PlannedMissionV2()
         self.get_logger().info('Incoming request\na: %s' % request)
         #response.planned_mission.drones = mission.drones
-        response.planned_mission.flight_altitude = 1
+        response.planned_mission.flight_altitude = altitude
         #response.planned_mission.initial_location = mission.initial_location
         #response.planned_mission.mission_type = mission.mission_type
         #response.planned_mission.target_data = mission.target_data
