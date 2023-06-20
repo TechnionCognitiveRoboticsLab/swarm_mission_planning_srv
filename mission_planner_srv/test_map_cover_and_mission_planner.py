@@ -1,6 +1,7 @@
 import rclpy
 from rclpy.node import Node
 import sys
+import cv2, cv_bridge
 
 from swarm_interfaces.srv import MapToGrid, MissionPlanningV2
 from swarm_interfaces.msg import MapWithCoords, Zone, GeoPoint, ZoneShapeEnum, ZoneTypeEnum, MissionTargetData, Drone
@@ -23,7 +24,9 @@ class MissionPlanningClientAsync(Node):
         self.mission_planning_req = MissionPlanningV2.Request()
 
     def send_map_to_grid_request(self, filename):
-        self.map_to_grid_req.input_map.map_filename = filename
+        cv_image = cv2.imread(filename)
+        image_msg = cv_bridge.CvBridge().cv2_to_imgmsg(cv_image)
+        self.map_to_grid_req.input_map.map = image_msg
         self.map_to_grid_req.input_map.bottom_left = geopoint_from_xy(0, 0)
         self.map_to_grid_req.input_map.top_right = geopoint_from_xy(100, 100)
 
