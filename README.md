@@ -3,7 +3,7 @@ A ROS2 service that plans missions for swarms.
 
 ## Installation
 
-This is assuming you already have Ubuntu 22.04 and ROS2 Humble
+This is assuming you already have Ubuntu 22.04, ROS2 Humble, and tensorflow
 
 Download the packages
 ```console
