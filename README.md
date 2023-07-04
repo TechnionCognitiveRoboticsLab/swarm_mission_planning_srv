@@ -5,18 +5,24 @@ A ROS2 service that plans missions for swarms.
 
 This is assuming you already have Ubuntu 22.04 and ROS2 Humble
 
+Download the packages
 ```console
 mkdir -p mission_planning_ws/src
 cd mission_planning_ws/src
 git clone git@github.com:halehaka/swarm_mission_planning_srv.git
 git clone git@github.com:halehaka/map_cover.git
 git clone git@github.com:halehaka/interfaces_swarm.git
+```
+
+Build the workspace
+```console
 source /opt/ros/humble/setup.bash
+cd ~/mission_planning_ws
 colcon build
 source  install/setup.bash
 ```
 
-To have some maps to play with, run
+To have some maps to play with (note that this will download about 1.4GB of maps, so you can skip this), run
 ```console
 mkdir -p ~/mission_planning_ws/landcover
 cd ~/mission_planning_ws/landcover
@@ -26,21 +32,31 @@ unzip landcover.ai.v1.zip
 
 ## Getting started
 
-On one terminal:
+We have two services to run. 
 
+The first one takes as input a map, a grid size, and some annotated polygons (optional) and outputs a grid with target detection probabilities for each cell.
+To run this, open a terminal and run 
 ```console
+source ~/mission_planning_ws/install/setup.bash
+ros2 run map_cover predict_node
+```
+You will see some tensorflow warnings and errors - they are safe to ignore
+
+
+In a second terimal, run the mission planning service, which takes as input a grid and initial locations for the drones, and outputs a plan
+```console
+source ~/mission_planning_ws/install/setup.bash
 ros2 run mission_planner_srv service
 ```
 
-and on another:
+Finally, to test the planning service, open another terminal and run:
 
 ```console
-ros2 run mission_planner_srv client
+source ~/mission_planning_ws/install/setup.bash
+ros2 run mission_planner_srv client ~/mission_planning_ws/landcover/images/M-33-7-A-d-2-3.tif
 ```
-
-to get the main idea of what's going on.
-
-Tested on amd64: foxy, galactic, and humble.
+You can replace the image with any other map.
+This first calls the map cover service to get a grid, and then the mission planning service with the grid to get a plan
 
 ## Dependencies
 
