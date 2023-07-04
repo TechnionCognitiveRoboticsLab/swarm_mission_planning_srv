@@ -61,3 +61,4 @@ This first calls the map cover service to get a grid, and then the mission plann
 ## Dependencies
 
 * [swarm_interfaces](https://github.com/halehaka/interfaces_swarm)
+* [map_cover](https://github.com/halehaka/map_cover)
