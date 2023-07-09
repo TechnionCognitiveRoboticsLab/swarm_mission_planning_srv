@@ -1,5 +1,5 @@
 from swarm_interfaces.srv import MissionPlanningV2
-from swarm_interfaces.msg import Mission, PlannedMissionV2, GeoPoint, Zone
+from swarm_interfaces.msg import Mission, PlannedMissionV2, GeoPoint, Zone, ZoneTypeEnum, SubSwarmRoute
 
 import rclpy
 from rclpy.node import Node
@@ -16,8 +16,10 @@ class LawnmowerPlanningService(Node):
         self.plan_publisher = self.create_publisher(PlannedMissionV2, publish_plan_topic, 10)  
 
     def mission_planning_callback(self, request, response):
+        self.get_logger().info('Incoming request\na: %s' % str(request))
+        
         mission = request.mission
-        altitude = mission.initial_location.altitude + 1
+        altitude = mission.initial_location[0].altitude + 1
         min_x = mission.zones[0].geo_points[0].latitude
         min_y = mission.zones[0].geo_points[0].longitude
         max_x = mission.zones[0].geo_points[3].latitude
@@ -25,7 +27,6 @@ class LawnmowerPlanningService(Node):
         resolution = 0.5
 
         plan = []
-
 
         x = min_x
         while x < max_x:
@@ -47,22 +48,15 @@ class LawnmowerPlanningService(Node):
                 y = y - resolution            
             x = x + resolution
 
-
-
-
         response.planned_mission = PlannedMissionV2()
-        self.get_logger().info('Incoming request\na: %s' % request)
-        #response.planned_mission.drones = mission.drones
-        response.planned_mission.flight_altitude = 1
-        #response.planned_mission.initial_location = mission.initial_location
-        #response.planned_mission.mission_type = mission.mission_type
-        #response.planned_mission.target_data = mission.target_data
-        #response.planned_mission.zones = [Zone(geo_points=plan)]
-        response.planned_mission.route = plan
-
+        route = SubSwarmRoute()
+        route.drones = mission.drones
+        route.flight_altitude = 1.0
+        route.route = plan
+        response.planned_mission.routes.append(route)
+        
         self.plan_publisher.publish(response.planned_mission)
         return response
-
 
 def main(args=None):
     rclpy.init(args=args)
