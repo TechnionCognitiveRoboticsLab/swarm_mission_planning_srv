@@ -58,6 +58,26 @@ ros2 run mission_planner_srv client ~/mission_planning_ws/landcover/images/M-33-
 You can replace the image with any other map.
 This first calls the map cover service to get a grid, and then the mission planning service with the grid to get a plan
 
+## Interface Testing
+
+I all you need is to test the output, run in one terminal:
+
+```console
+ros2 run mission_planner_srv lawnmower
+```
+
+in another terminal, run:
+
+```console
+ros2 topic echo /mission_plan
+```
+
+and finally, in another terminal:
+
+```console
+ros2 run mission_planner_srv test
+```
+
 ## Dependencies
 
 * [swarm_interfaces](https://github.com/halehaka/interfaces_swarm)

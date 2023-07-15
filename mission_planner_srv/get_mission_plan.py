@@ -4,7 +4,6 @@ import swarm_interfaces.srv
 import rclpy
 from rclpy.node import Node
 
-
 class MinimalClientAsync(Node):
 
     def __init__(self):
@@ -20,9 +19,7 @@ class MinimalClientAsync(Node):
         d2 = swarm_interfaces.msg.Drone(drone_mission_duration=100, number_of_drone=2)
         d3 = swarm_interfaces.msg.Drone(drone_mission_duration=100, number_of_drone=3)
         m.drones = [d1, d2, d3]
-        m.initial_location.altitude = 0.0
-        m.initial_location.latitude = 0.0
-        m.initial_location.longitude = 0.0
+        m.initial_location = [swarm_interfaces.msg.GeoPoint(longitude=0.0, latitude=0.0, altitude=0.0)] * len(m.drones)
         z = swarm_interfaces.msg.Zone ()    
         z.alt_max = 2
         z.alt_min = 1
@@ -48,7 +45,6 @@ class MinimalClientAsync(Node):
         self.future = self.cli.call_async(self.req)
         rclpy.spin_until_future_complete(self, self.future)
         return self.future.result()
-
 
 def main():
     print('Hi from mission_planner_client.')
