@@ -19,34 +19,12 @@ class LawnmowerPlanningService(Node):
         self.get_logger().info('Incoming request\na: %s' % str(request))
         
         mission = request.mission
-        altitude = mission.initial_location[0].altitude + 1
-        min_x = mission.zones[0].geo_points[0].latitude
-        min_y = mission.zones[0].geo_points[0].longitude
-        max_x = mission.zones[0].geo_points[3].latitude
-        max_y = mission.zones[0].geo_points[3].longitude
-        resolution = 0.5
-
         plan = []
 
-        x = min_x
-        while x < max_x:
-            
-            y = min_y
-            while y < max_y:
-                g = GeoPoint(altitude=altitude, latitude=x, longitude=y)
-                plan.append(g)
-                y = y + resolution            
-            x = x + resolution
-
-            if x > max_x:
-                break
-
-            y = max_y
-            while y > min_y:
-                g = GeoPoint(altitude=altitude, latitude=x, longitude=y)
-                plan.append(g)
-                y = y - resolution            
-            x = x + resolution
+        plan.append(GeoPoint(altitude=0.0, latitude=300.0, longitude=280.0,))
+        plan.append(GeoPoint(altitude=0.0, latitude=850.0, longitude=280.0,))
+        plan.append(GeoPoint(altitude=0.0, latitude=300.0, longitude=280.0,))
+        plan.append(GeoPoint(altitude=0.0, latitude=850.0, longitude=280.0,))
 
         response.planned_mission = PlannedMissionV2()
         route = SubSwarmRoute()
