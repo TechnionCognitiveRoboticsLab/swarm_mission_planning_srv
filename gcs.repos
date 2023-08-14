@@ -7,5 +7,5 @@ repositories:
     url: https://github.com/halehaka/swarm_mission_planning_srv.git
   halehaka/swarm_interfaces:
     type: git
-    url: git@github.com:halehaka/interfaces_swarm.git
+    url: https://github.com/halehaka/interfaces_swarm.git
     
