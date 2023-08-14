@@ -10,7 +10,7 @@
   <depend>rclpy</depend>
   <depend>swarm_interfaces</depend>
   <depend>map_cover</depend>
-  <depend>cv2</depend>
+  <depend>python3-opencv</depend>
   <depend>cv_bridge</depend>
 
   <test_depend>ament_copyright</test_depend>
