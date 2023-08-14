@@ -2,7 +2,7 @@ repositories:
   halehaka/map_cover:
     type: git
     url: https://github.com/halehaka/map_cover.git
-  halehaka/mission_planner_srv:
+  halehaka/swarm_mission_planning_srv:
     type: git
     url: https://github.com/halehaka/swarm_mission_planning_srv.git
 #  halehaka/swarm_interfaces:
