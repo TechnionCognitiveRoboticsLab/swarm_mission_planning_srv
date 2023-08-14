@@ -13,4 +13,4 @@ jobs:
         with:
           package-name: mission_planner_srv
           target-ros2-distro: humble
-          vcs-repo-file-url: https://raw.githubusercontent.com/ros2/ros2/humble/ros2.repos
+          vcs-repo-file-url: https://github.com/halehaka/swarm_mission_planning_srv.git
