@@ -1,8 +1,7 @@
-import swarm_interfaces.msg
-import swarm_interfaces.srv
-
 import rclpy
 from rclpy.node import Node
+import swarm_interfaces.msg
+import swarm_interfaces.srv
 
 class MinimalClientAsync(Node):
 
@@ -59,9 +58,6 @@ def main():
     rclpy.shutdown()
 
     rclpy.init()
-
-
-
 
 if __name__ == '__main__':
     main()
