@@ -1,11 +1,11 @@
 repositories:
   halehaka/map_cover:
     type: git
-    url: https://github.com/halehaka/map_cover.git
+    url: git@github.com:halehaka/map_cover.git
   halehaka/swarm_mission_planning_srv:
     type: git
-    url: https://github.com/halehaka/swarm_mission_planning_srv.git
+    url: git@github.com:halehaka/swarm_mission_planning_srv.git
   halehaka/swarm_interfaces:
     type: git
-    url: https://github.com/halehaka/interfaces_swarm.git
+    url: git@github.com:halehaka/interfaces_swarm.git
     
