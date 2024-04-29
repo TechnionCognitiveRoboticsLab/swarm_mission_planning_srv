@@ -1,5 +1,6 @@
 # swarm_mission_planning_srv
 A ROS2 service that plans missions for swarms.
+This is the new version that runs our clever algorithm.
 
 ## Installation
 
@@ -46,7 +47,7 @@ You will see some tensorflow warnings and errors - they are safe to ignore
 In a second terimal, run the mission planning service, which takes as input a grid and initial locations for the drones, and outputs a plan
 ```console
 source ~/mission_planning_ws/install/setup.bash
-ros2 run mission_planner_srv service
+ros2 run mission_planner_srv server_polygons
 ```
 
 Finally, to test the planning service, open another terminal and run:
